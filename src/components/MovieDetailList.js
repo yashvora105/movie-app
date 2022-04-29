@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Header from "./Header";
 
 const MovieDetailList = () => {
+
   const location = useLocation();
+  const navigate = useNavigate();
+
   const [moviesDetail, setMoviesDetail] = useState(null);
 
   const getMovieDetailRequest = async () => {
@@ -20,7 +23,7 @@ const MovieDetailList = () => {
 
   useEffect(() => {
     getMovieDetailRequest();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function formatDate(date) {
@@ -35,7 +38,7 @@ const MovieDetailList = () => {
     padding: "10px",
     fontFamily: "Arial",
     fontSize: "20px",
-    fontWeight: "bold"
+    fontWeight: "bold",
   };
 
   return (
@@ -43,8 +46,8 @@ const MovieDetailList = () => {
       {moviesDetail && (
         <>
           <div>
-            <Header />
-            <div style= {mystyle} >{moviesDetail.title}</div>
+            <Header name={"Movie Details"} arrowimage={true} onClick={() => navigate(-1)} />
+            <div style={mystyle}>{moviesDetail.title}</div>
 
             <div className="container-fluid">
               <div className="row">
@@ -68,7 +71,13 @@ const MovieDetailList = () => {
                   <i>{moviesDetail.overview}</i>
                   <br />
                   <br />
-                  <button onClick={()=>{alert("Added to favourite")}}>Add to Favourite</button>
+                  <button
+                    onClick={() => {
+                      alert("Added to favourite");
+                    }}
+                  >
+                    Add to Favourite
+                  </button>
                 </div>
               </div>
             </div>

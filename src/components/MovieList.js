@@ -25,7 +25,7 @@ const MovieList = () => {
 
   return (
     <div>
-      <Header />
+      <Header name={"Pop Movies"}/>
 
       <div class="container-fluid">
         <div class="row">
@@ -51,5 +51,6 @@ const MovieList = () => {
     </div>
   );
 };
+
 
 export default MovieList;
